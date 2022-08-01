@@ -10,6 +10,8 @@
 
 <br>
 
+./color-palette
+
 # Piggy Bank for Words (German version below)
 ## WHAT THE... ?!
 
@@ -81,39 +83,13 @@ at: aline.kniestedt@leanera.net
 - Text Font: Karla Light
 - Picture files are located in the github folder
 
-<div style='display: grid; grid-template-rows: auto; grid-area-columns: auto; gap: 15px;'>
-  <div style="grid-column-start: 1; grid-column-end: 1; grid-row-start: 1; grid-row-end: 1; background-color: #E69804; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 2; grid-column-end: 2; grid-row-start: 1; grid-row-end: 1; background-color: #FBB023; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 3; grid-column-end: 3; grid-row-start: 1; grid-row-end: 1; background-color: #FDD487; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 4; grid-column-end: 4; grid-row-start: 1; grid-row-end: 1; background-color: #FEE6B9; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 1; grid-column-end: 1; grid-row-start: 2; grid-row-end: 2; background-color: #208D9E; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 2; grid-column-end: 2; grid-row-start: 2; grid-row-end: 2; background-color: #2BBCD2; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 3; grid-column-end: 3; grid-row-start: 2; grid-row-end: 2; background-color: #9BDFE9; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 4; grid-column-end: 4; grid-row-start: 2; grid-row-end: 2; background-color: #E1F6F9; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 1; grid-column-end: 1; grid-row-start: 3; grid-row-end: 3; background-color: #5F5F5F; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 2; grid-column-end: 2; grid-row-start: 3; grid-row-end: 3; background-color: #7F7F7F; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 3; grid-column-end: 3; grid-row-start: 3; grid-row-end: 3; background-color: #C2C2C2; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 4; grid-column-end: 4; grid-row-start: 3; grid-row-end: 3; background-color: #EDEDED; width: 50px; height: 50px">
-  </div>
-</div>
-
-<!-- |#E69804|#FBB023|#FDD487|#FEE6B9|
-|-------|-------|-------|-------|
-|#208D9E|#2BBND2|#9BDFE9|#E1F6F9|
-|#5F5F5F|#7F7F7F|#C2C2C2|#EDEDED|
- -->
-
+#E69804 | #FBB023 | #FDD487 | #FEE6B9
+:----: | :----: | :----: | :----:
+![#E69804](./.github/color-palette/E69804.svg) | ![#FBB023](./.github/color-palette/FBB023.svg) | ![#FDD487](./.github/color-palette/FDD487.svg) | ![#FEE6B9](./.github/color-palette/FEE6B9.svg)
+**#208D9E**  | **#2BBCD2**  | **#9BDFE9** | **#E1F6F9**
+![#208D9E](./.github/color-palette/208D9E.svg) | ![#2BBCD2](./.github/color-palette/2BBCD2.svg) | ![#9BDFE9](./.github/color-palette/9BDFE9.svg) | ![#E1F6F9](./.github/color-palette/E1F6F9.svg)
+**#5F5F5F**  | **#7F7F7F**  | **#C2C2C2** | **#EDEDED**
+![#5F5F5F](./.github/color-palette/5F5F5F.svg) | ![#7F7F7F](./.github/color-palette/7F7F7F.svg) | ![#C2C2C2](./.github/color-palette/C2C2C2.svg) | ![#EDEDED](./.github/color-palette/EDEDED.svg)
 
 #
 #  Das Phrasenschwein
@@ -184,29 +160,10 @@ unter: aline.kniestedt@leanera.net
 - Text: Karla Light
 - Die Grafiken befinden sich im github Ordner
 
-<div style='display: grid; grid-template-rows: auto; grid-template-columns: auto; gap: 15px;'>
-  <div style="grid-column-start: 1; grid-column-end: 1; grid-row-start: 1; grid-row-end: 1; background-color: #E69804; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 2; grid-column-end: 2; grid-row-start: 1; grid-row-end: 1; background-color: #FBB023; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 3; grid-column-end: 3; grid-row-start: 1; grid-row-end: 1; background-color: #FDD487; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 4; grid-column-end: 4; grid-row-start: 1; grid-row-end: 1; background-color: #FEE6B9; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 1; grid-column-end: 1; grid-row-start: 2; grid-row-end: 2; background-color: #208D9E; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 2; grid-column-end: 2; grid-row-start: 2; grid-row-end: 2; background-color: #2BBCD2; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 3; grid-column-end: 3; grid-row-start: 2; grid-row-end: 2; background-color: #9BDFE9; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 4; grid-column-end: 4; grid-row-start: 2; grid-row-end: 2; background-color: #E1F6F9; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 1; grid-column-end: 1; grid-row-start: 3; grid-row-end: 3; background-color: #5F5F5F; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 2; grid-column-end: 2; grid-row-start: 3; grid-row-end: 3; background-color: #7F7F7F; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 3; grid-column-end: 3; grid-row-start: 3; grid-row-end: 3; background-color: #C2C2C2; width: 50px; height: 50px">
-  </div>
-  <div style="grid-column-start: 4; grid-column-end: 4; grid-row-start: 3; grid-row-end: 3; background-color: #EDEDED; width: 50px; height: 50px">
-  </div>
-</div>
+#E69804 | #FBB023 | #FDD487 | #FEE6B9
+:----: | :----: | :----: | :----:
+![#E69804](./.github/color-palette/E69804.svg) | ![#FBB023](./.github/color-palette/FBB023.svg) | ![#FDD487](./.github/color-palette/FDD487.svg) | ![#FEE6B9](./.github/color-palette/FEE6B9.svg)
+**#208D9E**  | **#2BBCD2**  | **#9BDFE9** | **#E1F6F9**
+![#208D9E](./.github/color-palette/208D9E.svg) | ![#2BBCD2](./.github/color-palette/2BBCD2.svg) | ![#9BDFE9](./.github/color-palette/9BDFE9.svg) | ![#E1F6F9](./.github/color-palette/E1F6F9.svg)
+**#5F5F5F**  | **#7F7F7F**  | **#C2C2C2** | **#EDEDED**
+![#5F5F5F](./.github/color-palette/5F5F5F.svg) | ![#7F7F7F](./.github/color-palette/7F7F7F.svg) | ![#C2C2C2](./.github/color-palette/C2C2C2.svg) | ![#EDEDED](./.github/color-palette/EDEDED.svg)
