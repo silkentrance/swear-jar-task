@@ -88,7 +88,7 @@ public class PenaltyController {
     ...
      */
 
-    @PostMapping(path = "/penalty", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(path = "/api/penalty", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<AddPenaltyResponse> addPenalty(@RequestBody AddPenaltyRequest request) {

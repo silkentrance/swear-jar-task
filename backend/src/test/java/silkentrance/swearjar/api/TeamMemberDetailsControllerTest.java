@@ -15,7 +15,7 @@ import static silkentrance.swearjar.api.TeamMemberDetailsController.TeamMemberDe
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TeamMemberDetailsControllerTest extends AbstractControllerTest {
 
-    private static final String PATH = "team_member/{id}";
+    private static final String PATH = "api/team_member/{id}";
 
     @Nested
     public class StandardErrorResponsesTest {

@@ -67,7 +67,7 @@ public class AdjustedPenaltyTotalController {
     @Autowired
     private AdjustedPenaltyTotalRepository adjustedPenaltyTotalRepository;
 
-    @PostMapping(path = "/penalty_total", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(path = "/api/penalty_total", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<AdjustPenaltyTotalResponse> adjustPenaltyTotal(

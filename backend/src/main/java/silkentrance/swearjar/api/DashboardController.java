@@ -52,7 +52,7 @@ public class DashboardController {
     private PenaltyRepository penaltyRepository;
 
     // TODO for very large teams this will become both slow and memory hungry, so members must be fetched in a separate request and paging must be applied
-    @GetMapping(path = "/dashboard", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/api/dashboard", produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<DashboardResponse> dashboard() {
         Iterable<TeamMember> members = teamMemberRepository.findAllByOrderByNameAsc();

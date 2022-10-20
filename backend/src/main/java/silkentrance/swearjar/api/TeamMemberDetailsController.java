@@ -58,7 +58,7 @@ public class TeamMemberDetailsController {
     @Autowired
     private PenaltyRepository penaltyRepository;
 
-    @GetMapping(path = "/team_member/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/api/team_member/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TeamMemberDetailResponse> teamMemberDetails(@PathVariable(name = "id") long teamMemberId) {
         if (teamMemberId <= 0) {
             return ResponseEntity.badRequest().build();

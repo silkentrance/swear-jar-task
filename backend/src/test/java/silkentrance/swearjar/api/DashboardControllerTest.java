@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class DashboardControllerTest extends AbstractControllerTest {
 
-    private static final String PATH = "dashboard/";
+    private static final String PATH = "api/dashboard/";
 
     @Nested
     public class DashboardTest {

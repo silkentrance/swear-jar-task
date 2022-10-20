@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PenaltyControllerTest extends AbstractControllerTest {
 
-    private static final String PATH = "penalty/";
+    private static final String PATH = "api/penalty/";
 
     @Nested
     public class StandardErrorResponsesTest {
