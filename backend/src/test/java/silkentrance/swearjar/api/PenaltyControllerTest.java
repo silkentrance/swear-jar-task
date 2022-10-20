@@ -69,7 +69,10 @@ public class PenaltyControllerTest extends AbstractControllerTest {
             assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
             PenaltyController.AddPenaltyResponse response = responseEntity.getBody();
             assertThat(response.getMemberId()).isEqualTo(getTeamMember().getId());
+            assertThat(response.getMemberName()).isEqualTo(getTeamMember().getName());
             assertThat(response.getAmount()).isEqualTo(100);
+            assertThat(response.getCalculatedTotal()).isEqualTo(
+                    getPenaltyRepository().calculatePenaltyTotalByTeamMember(getTeamMember()));
         }
     }
 
@@ -92,7 +95,10 @@ public class PenaltyControllerTest extends AbstractControllerTest {
             TeamMember newTeamMember = newMemberOptional.get();
             assertThat(newTeamMember.getName()).isEqualTo(newMemberName);
             assertThat(response.getMemberId()).isEqualTo(newTeamMember.getId());
+            assertThat(response.getMemberName()).isEqualTo(newTeamMember.getName());
             assertThat(response.getAmount()).isEqualTo(100);
+            assertThat(response.getCalculatedTotal()).isEqualTo(
+                    getPenaltyRepository().calculatePenaltyTotalByTeamMember(newTeamMember));
         }
     }
 }

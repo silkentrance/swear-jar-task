@@ -1,9 +1,6 @@
 package silkentrance.swearjar.api;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +20,7 @@ public class AdjustedPenaltyTotalController {
     /*
     here I spared me from polluting the package namespace with reqres classes that are used by the controller only
      */
+
     /**
      * TODO document
      * The class <em>AdjustPenaltyTotalRequest</em> models a <em>DTO</em> that is used for manually adjusting the
@@ -36,7 +34,10 @@ public class AdjustedPenaltyTotalController {
     @NoArgsConstructor
     @Data
     public static class AdjustPenaltyTotalRequest {
+        @NonNull
         private Long memberId;
+
+        @NonNull
         private Integer amount;
     }
 
@@ -53,7 +54,10 @@ public class AdjustedPenaltyTotalController {
     @NoArgsConstructor
     @Data
     public static class AdjustPenaltyTotalResponse {
+        @NonNull
         private Long memberId;
+
+        @NonNull
         private Integer amount;
     }
 
@@ -69,6 +73,9 @@ public class AdjustedPenaltyTotalController {
     public ResponseEntity<AdjustPenaltyTotalResponse> adjustPenaltyTotal(
             @RequestBody AdjustPenaltyTotalRequest request) {
         if (request.getMemberId() <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (request.getAmount() < 0) {
             return ResponseEntity.badRequest().build();
         }
         Optional<TeamMember> memberOptional = teamMemberRepository.findById(request.getMemberId());

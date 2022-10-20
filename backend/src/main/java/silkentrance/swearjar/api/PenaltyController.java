@@ -1,9 +1,6 @@
 package silkentrance.swearjar.api;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +30,10 @@ public class PenaltyController {
     @NoArgsConstructor
     @Data
     public static class AddPenaltyRequest {
+        @NonNull
         private String memberName;
+
+        @NonNull
         private Integer amount;
     }
 
@@ -52,8 +52,16 @@ public class PenaltyController {
     @NoArgsConstructor
     @Data
     public static class AddPenaltyResponse {
+        @NonNull
         private Long memberId;
+
+        @NonNull
+        private String memberName;
+
+        @NonNull
         private Integer amount;
+
+        @NonNull
         private Integer calculatedTotal;
     }
 
@@ -94,6 +102,7 @@ public class PenaltyController {
         final Penalty penalty = penaltyRepository.createWithMemberAndAmount(teamMember, request.getAmount());
         AddPenaltyResponse response = AddPenaltyResponse.builder()
                 .memberId(penalty.getTeamMember().getId())
+                .memberName(penalty.getTeamMember().getName())
                 .amount(penalty.getAmount())
                 .calculatedTotal(penaltyRepository.calculatePenaltyTotalByTeamMember(teamMember))
                 .build();

@@ -42,6 +42,16 @@ public class AdjustedPenaltyTotalControllerTest extends AbstractControllerTest {
         }
 
         @Test
+        public void adjustPenaltyTotalMustReturn400WhenAmountIsNegative() {
+            assertThat(getTestRestTemplate().postForEntity(getUri(PATH),
+                    AdjustedPenaltyTotalController.AdjustPenaltyTotalRequest.builder()
+                            .memberId(getTeamMember().getId())
+                            .amount(-1)
+                            .build(),
+                    AdjustedPenaltyTotalController.AdjustPenaltyTotalResponse.class).getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        }
+
+        @Test
         public void adjustPenaltyTotalMustReturn404ForUnknownTeamMemberId() {
             assertThat(getTestRestTemplate().postForEntity(getUri(PATH),
                     AdjustedPenaltyTotalController.AdjustPenaltyTotalRequest.builder()

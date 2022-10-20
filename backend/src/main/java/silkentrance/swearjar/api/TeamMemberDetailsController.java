@@ -21,10 +21,18 @@ public class TeamMemberDetailsController {
     @NoArgsConstructor
     @Data
     public static class TeamMemberDetailResponse {
-        private @NonNull Long id;
-        private @NonNull String name;
-        private @NonNull Integer amountCalculated;
-        private @NonNull Integer amountAdjusted;
+        @NonNull
+        private Long id;
+
+        @NonNull
+        private String name;
+
+        @NonNull
+        private Integer amountCalculated;
+
+        @NonNull
+        private Integer amountAdjusted;
+
         @Singular
         private List<PenaltyDetail> penalties;
     }
@@ -34,9 +42,14 @@ public class TeamMemberDetailsController {
     @NoArgsConstructor
     @Data
     public static class PenaltyDetail {
-        private @NonNull Long id;
-        private @NonNull LocalDateTime dateTime;
-        private @NonNull Integer amount;
+        @NonNull
+        private Long id;
+
+        @NonNull
+        private LocalDateTime dateTime;
+
+        @NonNull
+        private Integer amount;
     }
 
     @Autowired
@@ -62,7 +75,7 @@ public class TeamMemberDetailsController {
                         .amountCalculated(penaltyRepository.calculatePenaltyTotalByTeamMember(teamMember))
                         .amountAdjusted(teamMember.getAdjustedPenaltyTotal().getAmount());
         // TODO this will get slow over time :-), refactor to separate method and enable paging and datetime filtering
-        final Iterable<Penalty > penalties = penaltyRepository.findByTeamMemberOrderByDateTimeDesc(teamMember);
+        final Iterable<Penalty> penalties = penaltyRepository.findByTeamMemberOrderByDateTimeDesc(teamMember);
         for (Penalty penalty : penalties) {
             responseBuilder.penalty(PenaltyDetail.builder()
                     .id(penalty.getId())
