@@ -84,6 +84,12 @@ public class PenaltyController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<AddPenaltyResponse> addPenalty(@RequestBody AddPenaltyRequest request) {
+        if ("".equals(request.getMemberName().trim())) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (request.getAmount() <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
         final TeamMember teamMember = teamMemberRepository.findOrCreateMember(request.getMemberName());
         final Penalty penalty = penaltyRepository.createWithMemberAndAmount(teamMember, request.getAmount());
         AddPenaltyResponse response = AddPenaltyResponse.builder()

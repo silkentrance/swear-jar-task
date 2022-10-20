@@ -68,6 +68,9 @@ public class AdjustedPenaltyTotalController {
     @Transactional
     public ResponseEntity<AdjustPenaltyTotalResponse> adjustPenaltyTotal(
             @RequestBody AdjustPenaltyTotalRequest request) {
+        if (request.getMemberId() <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
         Optional<TeamMember> memberOptional = teamMemberRepository.findById(request.getMemberId());
         if (!memberOptional.isPresent()) {
             return ResponseEntity.notFound().build();
