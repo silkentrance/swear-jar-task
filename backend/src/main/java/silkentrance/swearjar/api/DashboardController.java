@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import silkentrance.swearjar.entities.TeamMember;
@@ -29,7 +30,7 @@ public class DashboardController {
         @Data
         public static class Member {
             @NonNull
-            private Long id;
+            private long id;
 
             @NonNull
             private String name;
@@ -52,6 +53,7 @@ public class DashboardController {
     private PenaltyRepository penaltyRepository;
 
     // TODO for very large teams this will become both slow and memory hungry, so members must be fetched in a separate request and paging must be applied
+    @CrossOrigin(originPatterns = "*:*")
     @GetMapping(path = "/api/dashboard", produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<DashboardResponse> dashboard() {

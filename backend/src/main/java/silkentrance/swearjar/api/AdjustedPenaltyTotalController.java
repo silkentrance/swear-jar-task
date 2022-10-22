@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +36,10 @@ public class AdjustedPenaltyTotalController {
     @Data
     public static class AdjustPenaltyTotalRequest {
         @NonNull
-        private Long memberId;
+        private long memberId;
 
         @NonNull
-        private Integer amount;
+        private int amount;
     }
 
     /**
@@ -55,10 +56,10 @@ public class AdjustedPenaltyTotalController {
     @Data
     public static class AdjustPenaltyTotalResponse {
         @NonNull
-        private Long memberId;
+        private long memberId;
 
         @NonNull
-        private Integer amount;
+        private int amount;
     }
 
     @Autowired
@@ -67,6 +68,7 @@ public class AdjustedPenaltyTotalController {
     @Autowired
     private AdjustedPenaltyTotalRepository adjustedPenaltyTotalRepository;
 
+    @CrossOrigin(originPatterns = "*:*")
     @PostMapping(path = "/api/penalty_total", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional

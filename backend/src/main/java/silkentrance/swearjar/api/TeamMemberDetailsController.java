@@ -22,16 +22,16 @@ public class TeamMemberDetailsController {
     @Data
     public static class TeamMemberDetailResponse {
         @NonNull
-        private Long id;
+        private long id;
 
         @NonNull
         private String name;
 
         @NonNull
-        private Integer amountCalculated;
+        private int amountCalculated;
 
         @NonNull
-        private Integer amountAdjusted;
+        private int amountAdjusted;
 
         @Singular
         private List<PenaltyDetail> penalties;
@@ -43,7 +43,7 @@ public class TeamMemberDetailsController {
     @Data
     public static class PenaltyDetail {
         @NonNull
-        private Long id;
+        private long id;
 
         @NonNull
         private LocalDateTime dateTime;
@@ -58,6 +58,7 @@ public class TeamMemberDetailsController {
     @Autowired
     private PenaltyRepository penaltyRepository;
 
+    @CrossOrigin(originPatterns = "*:*")
     @GetMapping(path = "/api/team_member/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TeamMemberDetailResponse> teamMemberDetails(@PathVariable(name = "id") long teamMemberId) {
         if (teamMemberId <= 0) {
@@ -74,7 +75,7 @@ public class TeamMemberDetailsController {
                         .name(teamMember.getName())
                         .amountCalculated(penaltyRepository.calculatePenaltyTotalByTeamMember(teamMember))
                         .amountAdjusted(teamMember.getAdjustedPenaltyTotal().getAmount());
-        // TODO this will get slow over time :-), refactor to separate method and enable paging and datetime filtering
+        // TODO this will get slow over time :-), refactor to separate method and enable paging and filtering
         final Iterable<Penalty> penalties = penaltyRepository.findByTeamMemberOrderByDateTimeDesc(teamMember);
         for (Penalty penalty : penalties) {
             responseBuilder.penalty(PenaltyDetail.builder()

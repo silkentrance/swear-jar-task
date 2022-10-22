@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +32,10 @@ public class PenaltyController {
     @Data
     public static class AddPenaltyRequest {
         @NonNull
-        private String memberName;
+        private String memberName = "";
 
         @NonNull
-        private Integer amount;
+        private int amount;
     }
 
     /**
@@ -53,20 +54,23 @@ public class PenaltyController {
     @Data
     public static class AddPenaltyResponse {
         @NonNull
-        private Long memberId;
+        private long memberId;
 
         @NonNull
         private String memberName;
 
         @NonNull
-        private Integer amount;
+        private int amount;
 
         @NonNull
-        private Integer calculatedTotal;
+        private int calculatedTotal;
     }
 
     @Autowired
     private TeamMemberRepository teamMemberRepository;
+
+    @Autowired
+    private AdjustedPenaltyTotalRepository adjustedPenaltyTotalRepository;
 
     @Autowired
     private PenaltyRepository penaltyRepository;
@@ -87,7 +91,7 @@ public class PenaltyController {
 
     ...
      */
-
+    @CrossOrigin(originPatterns = "*:*")
     @PostMapping(path = "/api/penalty", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
@@ -99,6 +103,11 @@ public class PenaltyController {
             return ResponseEntity.badRequest().build();
         }
         final TeamMember teamMember = teamMemberRepository.findOrCreateMember(request.getMemberName());
+        // TODO add missing tests for possibly missing adjustedPenaltyTotal
+        if (teamMember.getAdjustedPenaltyTotal() == null) {
+            AdjustedPenaltyTotal adjustedPenaltyTotal = adjustedPenaltyTotalRepository.createWithMember(teamMember);
+            teamMember.setAdjustedPenaltyTotal(adjustedPenaltyTotal);
+        }
         final Penalty penalty = penaltyRepository.createWithMemberAndAmount(teamMember, request.getAmount());
         AddPenaltyResponse response = AddPenaltyResponse.builder()
                 .memberId(penalty.getTeamMember().getId())
