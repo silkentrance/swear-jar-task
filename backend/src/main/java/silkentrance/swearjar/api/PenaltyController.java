@@ -34,7 +34,6 @@ public class PenaltyController {
         @NonNull
         private String memberName = "";
 
-        @NonNull
         private int amount;
     }
 
@@ -53,16 +52,13 @@ public class PenaltyController {
     @NoArgsConstructor
     @Data
     public static class AddPenaltyResponse {
-        @NonNull
         private long memberId;
 
         @NonNull
         private String memberName;
 
-        @NonNull
         private int amount;
 
-        @NonNull
         private int calculatedTotal;
     }
 

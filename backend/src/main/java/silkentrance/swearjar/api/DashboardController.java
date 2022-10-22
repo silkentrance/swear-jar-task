@@ -29,17 +29,14 @@ public class DashboardController {
         @NoArgsConstructor
         @Data
         public static class Member {
-            @NonNull
             private long id;
 
             @NonNull
             private String name;
 
-            @NonNull
-            private Integer amountCalculated;
+            private int amountCalculated;
 
-            @NonNull
-            private Integer amountAdjusted;
+            private int amountAdjusted;
         }
 
         @Singular

@@ -35,10 +35,7 @@ public class AdjustedPenaltyTotalController {
     @NoArgsConstructor
     @Data
     public static class AdjustPenaltyTotalRequest {
-        @NonNull
         private long memberId;
-
-        @NonNull
         private int amount;
     }
 
@@ -55,10 +52,7 @@ public class AdjustedPenaltyTotalController {
     @NoArgsConstructor
     @Data
     public static class AdjustPenaltyTotalResponse {
-        @NonNull
         private long memberId;
-
-        @NonNull
         private int amount;
     }
 
