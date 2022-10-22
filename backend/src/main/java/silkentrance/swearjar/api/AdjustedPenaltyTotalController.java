@@ -1,6 +1,7 @@
 package silkentrance.swearjar.api;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import silkentrance.swearjar.entities.TeamMember;
-import silkentrance.swearjar.entities.TeamMemberRepository;
 import silkentrance.swearjar.entities.AdjustedPenaltyTotal;
 import silkentrance.swearjar.entities.AdjustedPenaltyTotalRepository;
+import silkentrance.swearjar.entities.TeamMember;
+import silkentrance.swearjar.entities.TeamMemberRepository;
 
 import java.util.Optional;
 
@@ -47,11 +48,12 @@ public class AdjustedPenaltyTotalController {
      * @see #adjustPenaltyTotal(AdjustPenaltyTotalRequest)
      * @see AdjustPenaltyTotalRequest
      */
-    @Builder
+    @SuperBuilder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Data
-    public static class AdjustPenaltyTotalResponse {
+    @Getter
+    @Setter
+    public static class AdjustPenaltyTotalResponse extends ApiResponse {
         private long memberId;
         private int amount;
     }
@@ -69,10 +71,18 @@ public class AdjustedPenaltyTotalController {
     public ResponseEntity<AdjustPenaltyTotalResponse> adjustPenaltyTotal(
             @RequestBody AdjustPenaltyTotalRequest request) {
         if (request.getMemberId() <= 0) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(
+                    AdjustPenaltyTotalResponse.builder()
+                            .errorMessage("invalid member id " + request.getMemberId())
+                            .build()
+            );
         }
         if (request.getAmount() < 0) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(
+                    AdjustPenaltyTotalResponse.builder()
+                            .errorMessage("invalid amount " + request.getAmount())
+                            .build()
+            );
         }
         Optional<TeamMember> memberOptional = teamMemberRepository.findById(request.getMemberId());
         if (!memberOptional.isPresent()) {

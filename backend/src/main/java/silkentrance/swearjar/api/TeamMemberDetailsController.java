@@ -1,10 +1,14 @@
 package silkentrance.swearjar.api;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import silkentrance.swearjar.entities.Penalty;
 import silkentrance.swearjar.entities.PenaltyRepository;
 import silkentrance.swearjar.entities.TeamMember;
@@ -16,21 +20,18 @@ import java.util.Optional;
 
 @RestController
 public class TeamMemberDetailsController {
-    @Builder
+    @SuperBuilder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Data
-    public static class TeamMemberDetailResponse {
-        @NonNull
+    @Getter
+    @Setter
+    public static class TeamMemberDetailResponse extends ApiResponse {
         private long id;
 
-        @NonNull
         private String name;
 
-        @NonNull
         private int amountCalculated;
 
-        @NonNull
         private int amountAdjusted;
 
         @Singular
@@ -42,14 +43,11 @@ public class TeamMemberDetailsController {
     @NoArgsConstructor
     @Data
     public static class PenaltyDetail {
-        @NonNull
         private long id;
 
-        @NonNull
         private LocalDateTime dateTime;
 
-        @NonNull
-        private Integer amount;
+        private int amount;
     }
 
     @Autowired
@@ -60,16 +58,20 @@ public class TeamMemberDetailsController {
 
     @CrossOrigin(originPatterns = "*:*")
     @GetMapping(path = "/api/team_member/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TeamMemberDetailResponse> teamMemberDetails(@PathVariable(name = "id") long teamMemberId) {
-        if (teamMemberId <= 0) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<TeamMemberDetailResponse> teamMemberDetails(@PathVariable(name = "id") long id) {
+        if (id <= 0) {
+            return ResponseEntity.badRequest().body(
+                    TeamMemberDetailResponse.builder()
+                            .errorMessage("invalid id " + id)
+                            .build()
+            );
         }
-        Optional<TeamMember> teamMemberOptional = teamMemberRepository.findById(teamMemberId);
+        Optional<TeamMember> teamMemberOptional = teamMemberRepository.findById(id);
         if (!teamMemberOptional.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         final TeamMember teamMember = teamMemberOptional.get();
-        final TeamMemberDetailResponse.TeamMemberDetailResponseBuilder responseBuilder =
+        final TeamMemberDetailResponse.TeamMemberDetailResponseBuilder<?,?> responseBuilder =
                 TeamMemberDetailResponse.builder()
                         .id(teamMember.getId())
                         .name(teamMember.getName())

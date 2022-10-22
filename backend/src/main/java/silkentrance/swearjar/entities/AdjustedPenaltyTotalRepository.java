@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface AdjustedPenaltyTotalRepository extends CrudRepository<AdjustedPenaltyTotal, String> {
-    Optional<AdjustedPenaltyTotal> findByMember(@NonNull TeamMember teamMember);
+    Optional<AdjustedPenaltyTotal> findByTeamMember(@NonNull TeamMember teamMember);
 
     /* here, I spared me the additional @Service layer and moved everything into the DAO, e.g.
     @Service

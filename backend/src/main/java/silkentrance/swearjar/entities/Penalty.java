@@ -1,11 +1,11 @@
 package silkentrance.swearjar.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 /**
  * TODO document
@@ -17,18 +17,13 @@ import java.time.temporal.TemporalUnit;
  */
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"team_member_id", "amount", "date_time"})})
+@SuperBuilder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor
-@Builder
 @Getter
 @Setter
 @ToString
-public final class Penalty {
-    @Id
-    @GeneratedValue
-    @Setter(AccessLevel.PACKAGE)
-    private Long id;
-
+public final class Penalty extends AbstractEntity {
     /**
      * The team member.
      */
@@ -50,29 +45,17 @@ public final class Penalty {
      * The amount in (Euro) cents.
      */
     @Column(nullable = false, updatable = false)
-    @NonNull
-    private Integer amount;
+    private int amount;
 
     @Override
-    public boolean equals(final Object o) {
-        if (o instanceof Penalty) {
-            final Penalty other = (Penalty) o;
-            return (this == other
-                    || (this.getId().equals(other.getId())
-                    && this.getTeamMember().equals(other.getTeamMember())
-                    && this.getAmount().equals(other.getAmount()))
-                    && this.getDateTime().equals(other.getDateTime()));
+    public boolean equals(final Object other) {
+        if (other instanceof Penalty) {
+            final Penalty penalty = (Penalty) other;
+            return super.equals(other)
+                    && this.getTeamMember().equals(penalty.getTeamMember())
+                    && this.getAmount() == penalty.getAmount()
+                    && this.getDateTime().equals(penalty.getDateTime());
         }
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        final Object id = this.getId();
-        // newly created entities do not have an id assigned
-        if (id == null) {
-            return super.hashCode();
-        }
-        return id.hashCode();
     }
 }

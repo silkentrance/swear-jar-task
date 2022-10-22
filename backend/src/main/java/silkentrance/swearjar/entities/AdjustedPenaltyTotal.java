@@ -1,8 +1,12 @@
 package silkentrance.swearjar.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 
 /**
  * TODO document
@@ -14,17 +18,13 @@ import javax.persistence.*;
  * @see Penalty
  */
 @Entity
+@SuperBuilder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor
-@Builder
 @Getter
 @Setter
 @ToString
-public class AdjustedPenaltyTotal {
-    @Id
-    @GeneratedValue
-    @Setter(AccessLevel.PACKAGE)
-    private Long id;
+public class AdjustedPenaltyTotal extends AbstractEntity {
 
     /**
      * The team member.
@@ -37,28 +37,16 @@ public class AdjustedPenaltyTotal {
      * The adjusted amount in (Euro) cents.
      */
     @Column(nullable = false)
-    @NonNull
     @Builder.Default
-    private Integer amount = 0;
+    private int amount = 0;
 
     @Override
-    public boolean equals(final Object o) {
-        if (o instanceof AdjustedPenaltyTotal) {
-            final AdjustedPenaltyTotal other = (AdjustedPenaltyTotal) o;
-            return (this == other
-                    || (this.getId().equals(other.getId())
-                    && this.getAmount().equals(other.getAmount())));
+    public boolean equals(final Object other) {
+        if (other instanceof AdjustedPenaltyTotal) {
+            final AdjustedPenaltyTotal adjustedPenaltyTotal = (AdjustedPenaltyTotal) other;
+            return super.equals(other)
+                    && this.getAmount() == adjustedPenaltyTotal.getAmount();
         }
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        final Object id = this.getId();
-        // newly created entities do not have an id assigned
-        if (id == null) {
-            return super.hashCode();
-        }
-        return id.hashCode();
     }
 }

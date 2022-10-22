@@ -1,6 +1,7 @@
 package silkentrance.swearjar.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -15,18 +16,13 @@ import java.util.List;
  * @see AdjustedPenaltyTotal
  */
 @Entity
+@SuperBuilder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor
-@Builder
 @Getter
 @Setter
 @ToString
-public class TeamMember {
-    @Id
-    @GeneratedValue
-    @Setter(AccessLevel.PACKAGE)
-    private Long id;
-
+public class TeamMember extends AbstractEntity {
     /**
      * The team member's name.
      */
@@ -50,23 +46,12 @@ public class TeamMember {
     private AdjustedPenaltyTotal adjustedPenaltyTotal;
 
     @Override
-    public boolean equals(final Object o) {
-        if (o instanceof TeamMember) {
-            final TeamMember other = (TeamMember) o;
-            return (this == other
-                    || (this.getId().equals(other.getId())
-                    && this.getName().equals(other.getName())));
+    public boolean equals(final Object other) {
+        if (other instanceof TeamMember) {
+            final TeamMember teamMember = (TeamMember) other;
+            return super.equals(other)
+                     && this.getName().equals(teamMember.getName());
         }
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        final Object id = this.getId();
-        // newly created entities do not have an id assigned
-        if (id == null) {
-            return super.hashCode();
-        }
-        return id.hashCode();
     }
 }
