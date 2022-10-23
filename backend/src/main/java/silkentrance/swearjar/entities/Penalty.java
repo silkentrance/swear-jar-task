@@ -44,7 +44,7 @@ public final class Penalty extends AbstractEntity {
     /**
      * The amount in (Euro) cents.
      */
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private int amount;
 
     @Override

@@ -157,11 +157,11 @@ public class PenaltyController {
         }
         Penalty penalty = penaltyOptional.get();
         penaltyRepository.delete(penalty);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(ApiResponse.builder().build());
     }
 
     @CrossOrigin(originPatterns = "*:*")
-    @PostMapping(path = "/api/penalty/change/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(path = "/api/penalty", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public ResponseEntity<ChangePenaltyResponse> changePenalty(@RequestBody ChangePenaltyRequest request) {
         // TODO add tests
@@ -186,6 +186,10 @@ public class PenaltyController {
         Penalty penalty = penaltyOptional.get();
         penalty.setAmount(request.amount);
         penaltyRepository.save(penalty);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(ChangePenaltyResponse.builder()
+                .id(penalty.getId())
+                .amount(penalty.getAmount())
+                .build()
+        );
     }
 }

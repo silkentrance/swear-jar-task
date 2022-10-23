@@ -14,8 +14,8 @@ import java.util.List;
 public interface PenaltyRepository extends CrudRepository<Penalty, Long> {
     List<Penalty> findByTeamMemberOrderByDateTimeDesc(@NonNull TeamMember teamMember);
 
-    @Query("SELECT SUM(p.amount) FROM Penalty p WHERE p.teamMember = :teamMember")
-    Integer calculatePenaltyTotalByTeamMember(@NonNull @Param("teamMember") TeamMember teamMember);
+    @Query("SELECT COALESCE(SUM(p.amount), 0) FROM Penalty p WHERE p.teamMember = :teamMember")
+    int calculatePenaltyTotalByTeamMember(@NonNull @Param("teamMember") TeamMember teamMember);
 
     /* here, I spared me the additional @Service layer and moved everything into the DAO, e.g.
     @Service
@@ -24,7 +24,7 @@ public interface PenaltyRepository extends CrudRepository<Penalty, Long> {
     And I spared me the repository impl class, also
      */
     @Transactional
-    default Penalty createWithMemberAndAmount(@NonNull TeamMember teamMember, @NonNull Integer amount) {
+    default Penalty createWithMemberAndAmount(@NonNull TeamMember teamMember, int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("amount must be > 0, got " + amount);
         }
