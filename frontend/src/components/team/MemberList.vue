@@ -14,11 +14,12 @@ defineProps({
 
 <template>
     <div class="member-list">
+        <h3>Team</h3>
         <header>
-            <span>Name</span>
-            <span>Penalties</span>
-            <span>Adjusted</span>
-            <span v-if="signStore.signed">Actions</span>
+            <h4>Name</h4>
+            <h4>Penalties</h4>
+            <h4>Adjusted</h4>
+            <h4 v-if="signStore.signed">Actions</h4>
         </header>
         <MemberDetail v-for="member in members" :member="member"/>
     </div>
@@ -27,12 +28,9 @@ defineProps({
 <style scoped>
 .member-list > header {
     display: flex;
-    flex-basis: auto;
-    flex-shrink: 0;
 }
 
-.member-list > header > span {
-    font-weight: 700;
+.member-list > header > h4 {
     width: 100px;
 }
 </style>

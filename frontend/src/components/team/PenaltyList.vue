@@ -14,10 +14,11 @@ defineProps({
 
 <template>
     <div class="penalty-list">
+        <h5>Penalties</h5>
         <header>
-            <span>Datetime</span>
-            <span>Amount</span>
-            <span v-if="signStore.signed">Actions</span>
+            <h6>Datetime</h6>
+            <h6>Amount</h6>
+            <h6 v-if="signStore.signed">Actions</h6>
         </header>
         <PenaltyDetail v-for="penalty in penalties" :penalty="penalty"/>
     </div>
@@ -30,10 +31,9 @@ defineProps({
 
 .penalty-list > header {
     display: flex;
-    flex-basis: 300px;
 }
 
-.penalty-list > header > * {
-    font-weight: 700;
+.penalty-list > header > h6 {
+    width: 200px;
 }
 </style>

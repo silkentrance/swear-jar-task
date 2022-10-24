@@ -31,6 +31,6 @@ eventBus.on('team:penaltyRemoved', refresh);
 </script>
 
 <template>
-    <h1>Team Members</h1>
+    <h2>Team Members</h2>
     <MemberList :members="teamMemberDetails"/>
 </template>

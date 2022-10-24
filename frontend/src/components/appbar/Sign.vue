@@ -19,6 +19,7 @@ const signStore = inject('signStore');
 <style scoped>
 .sign {
     display: flex;
+    align-items: flex-end;
     margin-left: 2em;
 }
 </style>

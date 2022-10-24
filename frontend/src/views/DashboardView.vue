@@ -25,7 +25,7 @@ eventBus.on('dashboard:penaltyTotalAdjusted', refresh);
 </script>
 
 <template>
-    <h1>Dashboard</h1>
+    <h2>Dashboard</h2>
     <AddPenalty/>
     <MemberList :members="dashboardResponse.members"/>
 </template>

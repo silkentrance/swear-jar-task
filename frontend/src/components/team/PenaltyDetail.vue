@@ -22,9 +22,9 @@ async function save(penalty) {
         amount.value = '';
     } else {
         await client.changePenalty(penalty.id, actualAmount);
+        eventBus.emit('team:penaltyChanged');
     }
     editMode.value = false;
-    eventBus.emit('team:penaltyChanged');
 }
 
 async function remove(penalty) {
@@ -53,8 +53,6 @@ function cancel(penalty) {
 <style scoped>
 .penalty-info {
     display: flex;
-    flex-basis: auto;
-    flex-shrink: 0;
 }
 
 .penalty-info > * {

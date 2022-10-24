@@ -24,7 +24,7 @@ async function addPenalty() {
 
 <template>
     <div class="add-penalty">
-        <h2>Add Penalty</h2>
+        <h3>Add Penalty</h3>
         <div>
             <div>
                 <div>
@@ -50,12 +50,7 @@ async function addPenalty() {
 
 .add-penalty > div {
     display: flex;
-    flex-basis: auto;
-    flex-shrink: 0;
-}
-
-.add-penalty > div > div {
-    margin-left: 1em;
+    align-items: center;
 }
 
 .add-penalty label {
@@ -73,10 +68,14 @@ async function addPenalty() {
     border: none;
     margin-left: 2em;
     height: 48px;
+    opacity: 1;
+    transition: opacity 0.5s;
 }
 
 .add-penalty div button:disabled {
     cursor: default;
+    opacity: .5;
+    transition: opacity 0.5s;
 }
 
 </style>

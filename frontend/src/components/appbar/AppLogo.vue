@@ -16,11 +16,12 @@ import { provide } from 'vue';
 }
 
 .app-logo img {
-    width: 2em;
+    width: 1.5em;
 }
 
 .app-logo span {
+    display: inline-block;
+    font-size: 1em;
     margin-left: .5em;
-    font-size: 2em;
 }
 </style>

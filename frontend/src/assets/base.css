@@ -45,6 +45,7 @@
 :root {
   --color-background: var(--c-gray-lightest);
   --color-text: var(--c-gray-dark);
+  --link-active-color: var(--c-orange-dark);
 }
 
 /* semantic dark style variables for this project */
@@ -52,6 +53,7 @@
   :root {
     --color-background: var(--c-gray-darkest);
     --color-text: var(--c-gray-lightest);
+    --link-active-color: var(--c-orange);
   }
 }
 

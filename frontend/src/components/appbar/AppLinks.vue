@@ -12,6 +12,7 @@ import { RouterLink, RouterView } from 'vue-router';
 <style scoped>
 .app-links {
     display: flex;
+    align-items: flex-end;
 }
 
 .app-links a {

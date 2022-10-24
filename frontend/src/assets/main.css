@@ -1,6 +1,5 @@
 @import "./base.css";
-/* @import "./fonts.css"; */
-/* @import "./colors.css"; */
+@import "./fonts.css";
 
 #app {
   max-width: 1280px;
@@ -11,15 +10,32 @@
 a {
   text-decoration: none;
   color: var(--text-color);
+  transition: color .5s;
+}
+
+a.router-link-exact-active {
+    color: var(--link-active-color);
+    transition: color .5s;
 }
 
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
   }
 
   #app {
     padding: 0 2rem;
   }
+}
+
+.router-view-wrapper {
+    margin-top: 2em;
+}
+
+.router-view-wrapper > *:first-child {
+    margin-top: 0;
+}
+
+.router-view-wrapper > * {
+    margin-top: 2em;
 }

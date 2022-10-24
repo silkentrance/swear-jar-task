@@ -8,7 +8,7 @@ import AppBar from '@/components/appbar/AppBar.vue';
 <template>
   <AppBar/>
 
-  <main>
+  <main class="router-view-wrapper">
     <RouterView />
   </main>
 </template>
