@@ -140,11 +140,14 @@ Run using
 
 ```
 > cd frontend
-> npm run preview
+> npm run dev
 ```
 
 In your browser, navigate to 
 
 ```
-http://localhost:4173
+http://localhost:5173
 ```
+
+NOTE: existing typing issues have not been resolved yet.
+So building this with `npm run build` will fail. 
