@@ -23,6 +23,7 @@ Run using
 
 ```
 {
+  "errorMessage": <string>,
   "members": [
     {
       "id": <number>,
@@ -49,6 +50,7 @@ Run using
 
 ```
 {
+    "errorMessage": <string>,
     "memberId": <number>,
     "memberName": <string>,
     "amount": <number>,
@@ -56,7 +58,38 @@ Run using
 }
 ```
 
-##### POST /api/penalty_total
+#### DELETE /api/penalty/{id}
+
+###### Response
+
+```
+{
+    "errorMessage": <string>
+}
+```
+
+#### PATCH /api/penalty
+
+###### Request
+
+```
+{
+    "id": <number>,
+    "amount": <number>
+}
+```
+
+###### Response
+
+```
+{
+    "errorMessage": <string>
+    "id": <number>,
+    "amount": <number>
+}
+```
+
+##### PATCH /api/penalty_total
 
 ###### Request
 
@@ -71,6 +104,7 @@ Run using
 
 ```
 {
+    "errorMessage": <string>,
     "memberId": <number>,
     "amount": <number>
 }
@@ -82,6 +116,7 @@ Run using
 
 ```
 {
+  "errorMessage": <string>,
   "id": <number>,
   "name": <string>,
   "amountCalculated": <number>,
