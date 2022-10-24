@@ -84,7 +84,7 @@ export class SwearJarApiClient {
     }
 
     async addPenalty(memberName: string, amount: number): Promise<AddPenaltyResponse> {
-        const request : AddPenaltyRequest = { memberName, amount };
+        const request: AddPenaltyRequest = { memberName, amount };
         const response = await axios.post<AddPenaltyRequest, AddPenaltyResponse>(
             this.getUrlForPath('penalty'),
             request,
@@ -98,7 +98,7 @@ export class SwearJarApiClient {
     }
 
     async changePenalty(id: number, amount: number): Promise<ChangePenaltyResponse> {
-        const request : ChangePenaltyRequest = { id, amount };
+        const request: ChangePenaltyRequest = { id, amount };
         const response = await axios.patch<ChangePenaltyRequest, ChangePenaltyResponse>(
             this.getUrlForPath('penalty'),
             request,
@@ -111,7 +111,7 @@ export class SwearJarApiClient {
         return Promise.resolve(response.data);
     }
 
-    async removePenalty(id: number): Promise<RemovePenaltyResponse> {
+    async removePenalty(id: number): Promise<ApiResponse> {
         const response = await axios.delete(
             this.getUrlForPath('penalty/' + id),
             {
@@ -124,7 +124,7 @@ export class SwearJarApiClient {
     }
 
     async adjustPenaltyTotal(memberId: number, amount: number): Promise<AdjustPenaltyTotalResponse> {
-        const request : AdjustPenaltyTotalRequest = { memberId, amount };
+        const request: AdjustPenaltyTotalRequest = { memberId, amount };
         const response = await axios.post<AdjustPenaltyTotalRequest, AdjustPenaltyTotalResponse>(
             this.getUrlForPath('penalty_total'),
             request,
